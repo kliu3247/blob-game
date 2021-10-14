@@ -1,9 +1,7 @@
 let numcoins = 10
-const coins = Array.from({length:numcoins},(el,i)=>{
-  return new Coin({x:100*i+100, y:300}, 40)
-})
+let coins
+let bloby, blobSprite
 
-const bloby = new BlobChar({x:50, y:300}, 200)
 
 function preload() {
   bg = loadImage('unnamed.png')
@@ -13,23 +11,25 @@ function preload() {
 
 function setup() {
   createCanvas(800, 400);
-  background(bg);
-  frameRate(12)
   
-  bloby.images = loadBlobImages(blobSprite)
-  coins.forEach( coin => coin.images = loadCoinImages(coinSprite))
+  frameRate(12)
+  bloby = new BlobChar(blobSprite, {x:50, y:200}, 200)
+  coins = Array.from({length:numcoins},(el,i)=>{
+    return new Coin(coinSprite, {x:100*i+100, y:100}, 40)
+  })
+
 }
 
 function draw() {
-  image(blobSprite, 10, 10)
+  background(bg);
   coins.forEach(coin => coin.render())
-  //bloby.render()
+  bloby.render()
   
   checkKeys()
   
 }
 
-function checkKeys () {
+function checkKeys() {
   if(keyIsDown(LEFT_ARROW)){
     bloby.moveLeft()
     return

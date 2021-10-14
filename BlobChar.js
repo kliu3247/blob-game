@@ -1,12 +1,14 @@
 class BlobChar{
-  consturctor({x,y}, size){
+  constructor(blobSprite, {x,y}, size){
+    console.log(blobSprite)
     this.x = x
     this.y = y
     this.size = size
-    this.images = []
+    this.images = loadBlobImages(blobSprite)
     this.imageCounter = 0
     this.direction = 1
     this.speed = 20
+    console.log(this.images)
   }
   
   move(){
@@ -16,13 +18,13 @@ class BlobChar{
   moveLeft(){
     this.direction = -1
     this.move()
-    this.nextImage(1,4)
+    this.nextImage(0,5)
   }
   
   moveRight(){
     this.direction = 1
     this.move()
-    this.nextImage(6,9)
+    this.nextImage(0,5)
   }
 
   
@@ -37,7 +39,8 @@ class BlobChar{
   }
   
   render(){
-    image(this.images[this.imageCounter], this.x, this.y, this.size, this.size)
+    // console.log(this.images)
+    image(this.images[0], this.x, this.y, this.size, this.size)
     this.imageCounter++
   }
 }
