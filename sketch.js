@@ -1,40 +1,48 @@
-let numcoins = 10
-let coins
-let bloby, blobSprite
+let coinSprite, blobSprite
+let images
+let game
+let sounds
 
 
 function preload() {
-  bg = loadImage('unnamed.png')
-  coinSprite = loadImage('coin.png')
-  blobSprite = loadImage('character.png')
+  bg = loadImage('assets/unnamed.png')
+  coinSprite = loadImage('assets/coin.png')
+  blobSprite = loadImage('assets/character.png')
+
+  images = {bg, coinSprite, blobSprite}
+  sounds = {}
 }
 
 function setup() {
-  createCanvas(800, 400);
-  
+  createCanvas(800, 400)
   frameRate(12)
-  bloby = new BlobChar(blobSprite, {x:50, y:200}, 200)
-  coins = Array.from({length:numcoins},(el,i)=>{
-    return new Coin(coinSprite, {x:100*i+100, y:100}, 40)
-  })
-
+  game = new Game(images, sounds)
 }
 
 function draw() {
-  background(bg);
-  coins.forEach(coin => coin.render())
-  bloby.render()
-  
   checkKeys()
-  
+  game.update()  
+  game.render()
+
 }
 
 function checkKeys() {
-  if(keyIsDown(LEFT_ARROW)){
-    bloby.moveLeft()
+  if(keyIsDown(UP_ARROW)){
+    game.bloby.jump()
+    return
+  } else if(keyIsDown(LEFT_ARROW)){
+    game.bloby.moveLeft()
     return
   } else if(keyIsDown(RIGHT_ARROW)){
-    bloby.moveRight()
+    game.bloby.moveRight()
     return       
+  } else {
+    game.bloby.render()
+  }
+}
+
+function keyReleased(){
+  if(keyCode === UP_ARROW){
+    game.bloby.clearJump()
   }
 }

@@ -1,9 +1,9 @@
 class Coin {
-  constructor(coinSprite, {x,y}, size){
+  constructor(images, {x,y}, size){
     this.x = x
     this.y = y
     this.size = size
-    this.images = loadCoinImages(coinSprite)
+    this.images = images
     this.imageCounter = 0
   }
   

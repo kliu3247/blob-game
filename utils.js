@@ -6,8 +6,8 @@ const loadCoinImages = (objectsImg) => {
 }
 
 const loadBlobImages = (runImg) => {
-  const runImages = Array.from({length:3}, (el, i) => {
-    return runImg.get(i * 300, 0, 350, 386)
+  const runImages = Array.from({length:8}, (el, i) => {
+    return runImg.get(i * 555, 12, 600, 600)
   })
   return runImages
 }

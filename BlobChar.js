@@ -1,6 +1,5 @@
 class BlobChar{
   constructor(blobSprite, {x,y}, size){
-    console.log(blobSprite)
     this.x = x
     this.y = y
     this.startY = y
@@ -13,7 +12,6 @@ class BlobChar{
     this.leftIter = 1
     this.rightCounter = 5
     this.rightIter = 1
-    console.log(this.images)
 
     this.accelerationX = 10
     this.accelerationY = 1
