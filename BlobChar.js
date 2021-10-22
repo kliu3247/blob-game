@@ -1,10 +1,10 @@
 class BlobChar{
-  constructor(blobSprite, {x,y}, size){
+  constructor(blobImages, {x,y}, size){
     this.x = x
     this.y = y
     this.startY = y
     this.size = size
-    this.images = loadBlobImages(blobSprite)
+    this.images = loadBlobImages(blobImages)
     this.imageCounter = 5
     this.direction = 1
     this.speed = 14
@@ -22,6 +22,9 @@ class BlobChar{
     this.jumping = false
     this.jumpValue = 0
     this.jumpInterval = null
+    this.score = 0;
+
+    this.boundingbox = new BoundingBox(this.x, this.y, this.size)
   }
 
   animateJump = () => {
@@ -83,13 +86,16 @@ class BlobChar{
   
   moveLeft(){
     this.direction = -1
-    this.move()
+    
     if (this.leftCounter == 0 || this.leftCounter == 3) {
       this.leftIter = -1 * this.leftIter;
     }
+    
     this.leftCounter = this.leftCounter + this.leftIter
     image(this.images[this.leftCounter], this.x, this.y, this.size, this.size)
     this.nextImage(5,9)
+    this.move()
+
   }
   
   moveRight(){
@@ -114,6 +120,8 @@ class BlobChar{
   }
   
   render(){
+    //this.boundingbox.update(this.x, this.y)
+    //this.boundingbox.render()
     // console.log(this.images)
     if(this.direction == 1) {
       image(this.images[4], this.x, this.y, this.size, this.size)

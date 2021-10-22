@@ -1,9 +1,10 @@
 class Background{
-    constructor(images){
-        this.images = images
+    constructor(image){
+        this.image = image
     }
     
     render(){
-        image(this.images)
+        background(bg);
+
     }
 }

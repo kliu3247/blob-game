@@ -1,3 +1,6 @@
+// const canvasWidth = window.innerWidth
+// const canvasHeight = window.innerHeight
+
 let coinSprite, blobSprite
 let images
 let game
@@ -8,22 +11,24 @@ function preload() {
   bg = loadImage('assets/unnamed.png')
   coinSprite = loadImage('assets/coin.png')
   blobSprite = loadImage('assets/character.png')
+  rocks = loadImage('assets/rock.png')
 
-  images = {bg, coinSprite, blobSprite}
+  images = {bg, coinSprite, blobSprite, rocks}
   sounds = {}
 }
 
 function setup() {
   createCanvas(800, 400)
+  // createCanvas(canvasWidth, canvasHeight)
   frameRate(12)
+
   game = new Game(images, sounds)
 }
 
 function draw() {
-  checkKeys()
-  game.update()  
   game.render()
-
+  checkKeys()
+  game.update() 
 }
 
 function checkKeys() {
